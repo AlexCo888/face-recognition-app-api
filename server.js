@@ -11,9 +11,7 @@ const db = knex({
   client: "pg",
   connection: {
     connectionString: "process.env.DATABASE_URL",
-    ssl: {
-      rejectUnauthorized: false,
-    },
+    ssl: true,
   },
 });
 
@@ -22,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("it is working");
+  res.send(db.users);
 });
 
 // SIGN IN
